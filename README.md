@@ -1,10 +1,10 @@
 # ReproRes 2022
 
 ## Class 01 (2022-09-23)
-
+<!--
 * [Recording](): check the Teams channel for the recording passcode
 * [Poll 1](https://debruine.github.io/reprores_2022/polls/poll-01.html)
-
+-->
 ### Pre-class 
 
 - Read [the intro](https://psyteachr.github.io/reprores-v3/) 
