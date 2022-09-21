@@ -8,9 +8,10 @@
 ### Pre-class 
 
 - Read [the intro](https://psyteachr.github.io/reprores-v3/) 
-- Read [Chapter 1: Getting Started](https://psyteachr.github.io/reprores-v3/intro.html) 
-- Fill out the [pre-class poll](https://forms.gle/m6MuVqLpxoakyCGk7)
 - Install R and RStudio (if using your own laptop in class)
+- Read [Chapter 1: Getting Started](https://psyteachr.github.io/reprores-v3/intro.html) 
+- Complete the [exercises](https://psyteachr.github.io/reprores-v3/exercises.html) for chapter 1
+- Fill out the [pre-class poll](https://forms.gle/m6MuVqLpxoakyCGk7)
 
 ### In-Class
 
