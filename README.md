@@ -19,8 +19,8 @@
 - Open RStudio 
 - Start at 13:05 (remind Lisa to start recording!)
 - [Why Code?](https://debruine.github.io/why-code/) presentation
-- Discuss the class syllabus
-- Discuss the data skills self-assessment
+- Discuss the [class syllabus](https://moodle.gla.ac.uk/course/view.php?id=33447&section=1)
+- Discuss the [data skills self-assessment](https://moodle.gla.ac.uk/mod/assign/view.php?id=3103593)
 - Break
 - Chapter 1 exercises
 
