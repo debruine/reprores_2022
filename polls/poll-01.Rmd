@@ -1,0 +1,200 @@
+---
+title: "ReproRes Poll Class 01"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# [Poll](https://forms.gle/J9s1FT32UBGi7ooh9)
+
+library(flexdashboard)
+library(tidyverse)
+library(googlesheets4)
+options(gargle_oauth_email = "debruine@gmail.com")
+library(ggthemes)
+library(see)
+library(ggwordcloud) # for word clouds
+library(tidytext) # for manipulating text for word clouds
+```
+
+```{r, eval = TRUE}
+theme_set(theme_fivethirtyeight(base_size = 15))
+scale_fill <- scale_fill_fivethirtyeight(drop=FALSE)
+scale_colour <- scale_colour_fivethirtyeight(drop=FALSE)
+```
+
+```{r, eval = FALSE}
+theme_set(theme_economist())
+scale_fill <- scale_fill_economist(drop=FALSE)
+scale_colour <- scale_colour_economist(drop=FALSE)
+```
+
+
+
+```{r}
+# read data
+url <- "12NzVYBAS0VyOol6sQu3cojjtRwURn3kMTesB2uWzjUQ"
+data <- read_sheet(url, sheet = "Week1")
+```
+
+`r nrow(data)` Participants
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### What programme are you in?
+
+```{r}
+dat_cats <- count(data, `What programme are you in?`, sort = TRUE) |> pull(1)
+prog_cats <- c("MSc Research Methods",
+               "MSc Brain Sciences",
+               "PhD Social Robotics") |>
+  c(dat_cats) |> unique()
+
+programme <- select(data, programme = 4) %>%
+  mutate(programme = factor(programme, prog_cats))
+
+ggplot(programme, aes(x = programme)) + 
+  geom_bar(show.legend = FALSE,
+           fill = scale_fill$palette(3)[[1]]) +
+  scale_x_discrete(name = "", drop=FALSE, 
+                   guide = guide_axis(n.dodge = 2)) +
+  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_fill
+```
+
+### What are you hoping to learn from this class?
+
+```{r}
+omitted <- c(stop_words$word, "im", 0:9)
+
+words <- select(data, hope = 11) %>%
+  filter(!is.na(hope)) %>%
+  unnest_tokens(output = "word", input = "hope") %>%
+  count(word) %>%
+  filter(!word %in% omitted) %>%
+  slice_max(order_by = n, n = 25, with_ties = FALSE)
+
+ggplot(words, aes(label = word, colour = word, size = n)) +
+  geom_text_wordcloud_area() +
+  scale_size_area(max_size = 16) +
+  theme_minimal(base_size = 14) +
+  scale_color_see_d(palette = "ice") 
+```
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+
+### How much experience do you have?
+
+```{r, fig.height = 5}
+experience <- data[5:7] %>%
+  rename(reproducibility = 1, R = 2, stats = 3) %>%
+  pivot_longer(cols = 1:3, 
+               names_to = "question",
+               values_to = "rating") %>%
+  mutate(rating = factor(rating, 1:5, c("none", "2", "3", "4", "A lot")))
+
+ggplot(experience, aes(x = rating, fill = question)) + 
+  geom_bar(show.legend = F) +
+  facet_wrap(~question, ncol = 1) +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_fill
+```
+
+### Playlist Suggestions
+
+```{r}
+data[, 12] %>%
+  rename(song = 1) %>%
+  filter(!is.na(song)) %>%
+  DT::datatable(colnames = "", rownames = FALSE)
+```
+
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### How are you feeling about this class?
+
+```{r fig-feeling, fig.width=8, fig.height=5}
+feel_cats <- c("I'm excited to learn!", 
+                "I'm confident about my coding skills", 
+                "I'm anxious about the coding",
+                "I'm confident about my stats understanding",
+                "I'm anxious about the stats",
+                "I think these skills will be very useful to me",
+                "I'm not sure if these skills will be useful to me",
+                "I don't think these skills will be useful to me",
+                "This will be mostly review for me",
+                "This will be all new for me")
+
+
+feelings <- select(data, programme = 4, feelings = 8) %>%
+  separate_rows(feelings, sep = ", ") %>%
+  mutate(feelings = factor(feelings, rev(feel_cats)))
+
+ggplot(feelings, aes(x = feelings)) +
+  geom_bar(show.legend = FALSE,
+           fill = scale_fill$palette(3)[[2]]) +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, 61)) 
+```
+
+### Check what you've completed
+
+```{r fig-completed, fig.width=8, fig.height=5}
+done_cats <- c("Installed R",
+               "Installed RStudio",
+               "Found the Moodle class",
+               "Subscribed to the class Teams channel",
+               "Found the online textbook",
+               "Read the intro chapter",
+               "Read Chapter 1",
+               "Watched the Chapter 1 videos",
+               "Completed the Chapter 1 exercises")
+
+
+done <- select(data, programme = 4, done = 9) %>%
+  separate_rows(done, sep = ", ") %>%
+  mutate(feelings = factor(done, rev(done_cats)))
+
+ggplot(done, aes(x = done)) +
+  geom_bar(show.legend = FALSE, 
+           fill = scale_fill$palette(3)[[3]]) +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, 61)) +
+  theme(axis.text.y = element_text(hjust = 1))
+```
+
+### Did you install the reprores package?
+
+```{r fig-reprores, fig.width=8, fig.height=5}
+reprores <- select(data, reprores = 10) %>%
+  mutate(reprores = factor(reprores, c("Yes",
+                                 "I tried, but it didn't work",
+                                 "I haven't tried yet")))
+
+ggplot(reprores, aes(x = reprores)) + 
+  geom_bar(show.legend = FALSE,
+           fill = scale_fill$palette(3)[[1]]) +
+  scale_x_discrete(name = "", drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_fill
+```
+
