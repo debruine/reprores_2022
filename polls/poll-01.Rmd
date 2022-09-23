@@ -82,12 +82,12 @@ words <- select(data, hope = 11) %>%
   unnest_tokens(output = "word", input = "hope") %>%
   count(word) %>%
   filter(!word %in% omitted) %>%
-  slice_max(order_by = n, n = 25, with_ties = FALSE)
+  slice_max(order_by = n, n = 20, with_ties = FALSE)
 
 ggplot(words, aes(label = word, colour = word, size = n)) +
   geom_text_wordcloud_area() +
-  scale_size_area(max_size = 16) +
-  theme_minimal(base_size = 14) +
+  scale_size_area(max_size = 15) +
+  theme_minimal(base_size = 13) +
   scale_color_see_d(palette = "ice") 
 ```
 
