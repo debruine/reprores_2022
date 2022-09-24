@@ -43,7 +43,8 @@ scale_colour <- scale_colour_economist(drop=FALSE)
 ```{r}
 # read data
 url <- "12NzVYBAS0VyOol6sQu3cojjtRwURn3kMTesB2uWzjUQ"
-data <- read_sheet(url, sheet = "Week1")
+data <- read_sheet(url, sheet = "Week1") |>
+  mutate(`What programme are you in?` = recode(`What programme are you in?`, "PhD Social Robotics" = "PhD Social AI", "Social AI CDT" = "PhD Social AI"))
 ```
 
 `r nrow(data)` Participants
@@ -57,7 +58,7 @@ Column {data-width=300}
 dat_cats <- count(data, `What programme are you in?`, sort = TRUE) |> pull(1)
 prog_cats <- c("MSc Research Methods",
                "MSc Brain Sciences",
-               "PhD Social Robotics") |>
+               "PhD Social AI") |>
   c(dat_cats) |> unique()
 
 programme <- select(data, programme = 4) %>%
@@ -68,7 +69,7 @@ ggplot(programme, aes(x = programme)) +
            fill = scale_fill$palette(3)[[1]]) +
   scale_x_discrete(name = "", drop=FALSE, 
                    guide = guide_axis(n.dodge = 2)) +
-  scale_y_continuous(name = "", breaks = 0:12*5) +
+  scale_y_continuous(name = "", breaks = 0:13*5) +
   scale_fill
 ```
 
