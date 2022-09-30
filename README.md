@@ -1,3 +1,5 @@
+[Collaborative Class Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/edit?usp=sharing)
+
 ## Class 02 (2022-09-30)
 
 ### Pre-class
