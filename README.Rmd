@@ -3,9 +3,11 @@ title: ReproRes 2022
 output: md_document
 ---
 
-[Collaborative Class Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/edit?usp=sharing)
+[Collaborative Class Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
 
 ## Class 02 (2022-09-30)
+
+* [Poll 2](https://debruine.github.io/reprores_2022/polls/poll-02.html)
 
 ### Pre-class
 
@@ -22,10 +24,10 @@ output: md_document
 -   Open the [class book](https://psyteachr.github.io/reprores-v3/)
 -   Open RStudio
 -   Set up class project
--   Cowsay
+-   cowsay
 -   Chapter 2 questions
 -   break
--   Present Chapter 2 websites
+-   Chapter 2 exercise walkthrough
 
 ### Class Notes
 

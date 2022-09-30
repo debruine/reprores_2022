@@ -1,6 +1,10 @@
-[Collaborative Class Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/edit?usp=sharing)
+[Collaborative Class
+Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
 
 ## Class 02 (2022-09-30)
+
+-   [Poll
+    2](https://debruine.github.io/reprores_2022/polls/poll-02.html)
 
 ### Pre-class
 
@@ -10,17 +14,18 @@
     [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
     for chapter 2
 -   Fill out the [pre-class poll](https://forms.gle/6ZiotbRgWPy79nhs9)
--   Fill out the [office hours when2meet](https://www.when2meet.com/?16977819-cpkIB)
+-   Fill out the [office hours
+    when2meet](https://www.when2meet.com/?16977819-cpkIB)
 
 ### In-Class
 
 -   Open the [class book](https://psyteachr.github.io/reprores-v3/)
 -   Open RStudio
 -   Set up class project
--   Cowsay
+-   cowsay
 -   Chapter 2 questions
 -   break
--   Present Chapter 2 websites
+-   Chapter 2 exercise walkthrough
 
 ### Class Notes
 
@@ -28,7 +33,8 @@
 
 ### After Class
 
--   Read [Chapter 3: Data Visualisation](https://psyteachr.github.io/reprores-v3/ggplot.html)
+-   Read [Chapter 3: Data
+    Visualisation](https://psyteachr.github.io/reprores-v3/ggplot.html)
 -   Complete the
     [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
     for chapter 3

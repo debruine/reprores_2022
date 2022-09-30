@@ -1,0 +1,214 @@
+---
+title: "ReproRes Poll Class 02"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 10,
+  fig.height = 5
+)
+
+# [Poll](https://forms.gle/1EY8WcHKyXQvxqMz9)
+
+library(flexdashboard)
+library(kableExtra)
+library(tidyverse)
+library(googlesheets4)
+options(gargle_oauth_email = "debruine@gmail.com")
+library(ggthemes)
+library(see)
+library(ggwordcloud) # for word clouds
+library(tidytext) # for manipulating text for word clouds
+```
+
+```{r, eval = TRUE}
+theme_set(theme_fivethirtyeight(base_size = 24))
+scale_fill <- scale_fill_brewer(palette = "Spectral", drop=FALSE)
+scale_colour <- scale_colour_brewer(palette = "Spectral", drop=FALSE)
+```
+
+```{r}
+# read data
+url <- "12NzVYBAS0VyOol6sQu3cojjtRwURn3kMTesB2uWzjUQ"
+data <- read_sheet(url, sheet = "Week2") %>%
+  filter(row_number() != 1)
+
+
+engage <- c(book = "Read the book", 
+            videos = "Watched the videos", 
+            exercise = "Did the formative exercise",
+            none = "I didn't get a chance this week")
+
+n <- nrow(data)
+```
+
+`r n` Participants
+
+Row {data-height=400}
+-----------------------------------------------------------------------
+
+### How did you engage with Chapter 2?
+
+```{r}
+subdat <- select(data, x = 2) %>%
+  separate_rows(x, sep = ", ") %>%
+  mutate(x = factor(x, rev(engage), rev(names(engage))))
+
+ggplot(subdat, aes(x = x, fill = x)) +
+  geom_bar(show.legend = FALSE,colour = "black") +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:11*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, n)) 
+```
+
+
+Row {data-height=400}
+-----------------------------------------------------------------------
+
+### What parts of Skills Self-Assessment did you find challenging or impossible?
+
+```{r}
+ssa_levels <- c("combine data" = "Combining the data from two files", 
+                "subject descriptives" = "Calculating the participant descriptives", 
+                "trial exclusion" = "Determining how many trials were excluded", 
+                "trial descriptives" = "Calculating the trial descriptives", 
+                "analysis" = "Running the analyses",
+                "none" = "none")
+
+subdat <- select(data, x = 4) %>%
+  separate_rows(x, sep = ", ") %>%
+  mutate(x = ifelse(is.na(x), "none", x)) %>%
+  mutate(x = factor(x, rev(ssa_levels), rev(names(ssa_levels))))
+
+ggplot(subdat, aes(x = x, fill = x)) +
+  geom_bar(show.legend = FALSE) +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:11*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, n)) 
+```
+
+
+
+### How did you engage with the Skills Self-Assessment?
+
+```{r}
+skass <- select(data, skass = 3) %>%
+  count(skass) %>%
+  mutate(skass = glue::glue("({round(100*n/sum(n))}%) {skass}"))
+
+treemap::treemap(skass,
+  index="skass",
+  vSize="n",
+  title = "",
+  palette = "Spectral",
+  inflate.labels = TRUE
+)
+```
+
+Row {data-height=400}
+-----------------------------------------------------------------------
+
+### How are you accessing RStudio?
+
+```{r}
+subdat <- select(data, x = 8) %>%
+  separate_rows(x, sep = ", ") %>%
+  filter(!is.na(x))
+
+ggplot(subdat, aes(x = x, fill = x)) +
+  geom_bar(show.legend = FALSE, color = "black") +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:11*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, n)) 
+```
+
+
+### Have you been studying in a group?
+
+```{r}
+subdat <- select(data, x = 5) %>%
+  mutate(x = factor(x, rev(c("Yes", "No, but I'd like to", "No, and I'd rather not"))))
+
+ggplot(subdat, aes(x = x, fill = x)) +
+  geom_bar(show.legend = FALSE, colour = "black") +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:11*5) +
+  scale_fill +
+  coord_flip(ylim = c(0, n)) 
+```
+
+Row {data-height=400}
+-----------------------------------------------------------------------
+
+### List concepts you learned in Chapters 1 and 2 that you feel confident about.
+
+```{r}
+omitted <- c(stop_words$word, "im", 0:9)
+
+words <- select(data, confident = 6) %>%
+  filter(!is.na(confident)) %>%
+  unnest_tokens(output = "word", input = "confident") %>%
+  count(word) %>%
+  filter(!word %in% omitted) %>%
+  slice_max(order_by = n, n = 25, with_ties = FALSE)
+
+ggplot(words, aes(label = word, colour = word, size = n)) +
+  geom_text_wordcloud_area() +
+  scale_size_area(max_size = 14) +
+  theme_minimal(base_size = 10) +
+  scale_color_see_d(palette = "ice") 
+```
+
+
+
+### List concepts you learned in Chapters 1 and 2 that you feel less confident about and would like reviewed in class today.
+
+```{r}
+omitted <- c(stop_words$word, "im", 0:9)
+
+words <- select(data, confident = 7) %>%
+  filter(!is.na(confident)) %>%
+  unnest_tokens(output = "word", input = "confident") %>%
+  count(word) %>%
+  filter(!word %in% omitted) %>%
+  slice_max(order_by = n, n = 25, with_ties = FALSE)
+
+ggplot(words, aes(label = word, colour = word, size = n)) +
+  geom_text_wordcloud_area() +
+  scale_size_area(max_size = 20) +
+  theme_minimal(base_size = 14) +
+  scale_color_see_d(palette = "ice") 
+```
+
+Row {data-height=600}
+-----------------------------------------------------------------------
+
+### Confident 
+
+```{r}
+select(data, confident = 6) %>%
+  filter(!is.na(confident)) %>%
+  kable(row.names = FALSE, col.names = "") %>%
+  kable_classic(lightable_options = "striped")
+```
+
+
+### Not Confident 
+
+```{r}
+select(data, confident = 7) %>%
+  filter(!is.na(confident)) %>%
+  kable(row.names = FALSE, col.names = "") %>%
+  kable_classic(lightable_options = "striped")
+```
