@@ -8,6 +8,7 @@
     [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
     for chapter 2
 -   Fill out the [pre-class poll](https://forms.gle/6ZiotbRgWPy79nhs9)
+-   Fill out the [office hours when2meet](https://www.when2meet.com/?16977819-cpkIB)
 
 ### In-Class
 
