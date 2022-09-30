@@ -13,10 +13,10 @@
 
 -   Open the [class book](https://psyteachr.github.io/reprores-v3/)
 -   Open RStudio
--   Recap and questions
--   Review Chapter 2 exercises in groups
+-   Set up class project
+-   Chapter 2 questions
 -   break
--   Present Chapter 2 exercises
+-   Present Chapter 2 websites
 
 ### Class Notes
 
