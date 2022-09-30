@@ -3,6 +3,43 @@ title: ReproRes 2022
 output: md_document
 ---
 
+[Collaborative Class Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/edit?usp=sharing)
+
+## Class 02 (2022-09-30)
+
+### Pre-class
+
+-   Read [Chapter 2: Reproducible
+    Workflows](https://psyteachr.github.io/reprores-v3/repro.html)
+-   Complete the
+    [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
+    for chapter 2
+-   Fill out the [pre-class poll](https://forms.gle/6ZiotbRgWPy79nhs9)
+-   Fill out the [office hours when2meet](https://www.when2meet.com/?16977819-cpkIB)
+
+### In-Class
+
+-   Open the [class book](https://psyteachr.github.io/reprores-v3/)
+-   Open RStudio
+-   Set up class project
+-   Cowsay
+-   Chapter 2 questions
+-   break
+-   Present Chapter 2 websites
+
+### Class Notes
+
+-   
+
+### After Class
+
+-   Read [Chapter 3: Data Visualisation](https://psyteachr.github.io/reprores-v3/ggplot.html)
+-   Complete the
+    [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
+    for chapter 3
+-   Complete the (optional) [data skills
+    self-assessment](https://moodle.gla.ac.uk/mod/assign/view.php?id=3103593)
+
 ## Class 01 (2022-09-23)
 <!--
 * [Recording](): check the Teams channel for the recording passcode
