@@ -14,6 +14,7 @@
 -   Open the [class book](https://psyteachr.github.io/reprores-v3/)
 -   Open RStudio
 -   Set up class project
+-   Cowsay
 -   Chapter 2 questions
 -   break
 -   Present Chapter 2 websites
