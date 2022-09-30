@@ -1,5 +1,7 @@
-[Collaborative Class
-Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
+-   Office hours: Fridays 11:00 - 12:00 in Lisa’s office (R524, 62
+    Hillhead Street) or [Zoom](https://uofglasgow.zoom.us/my/debruine)
+-   [Collaborative Class
+    Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
 
 ## Class 02 (2022-09-30)
 
@@ -29,7 +31,13 @@ Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjp
 
 ### Class Notes
 
--   
+-   Please take notes in the [Collaborative Class
+    Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
+    google doc
+-   Office hours will be Fridays 11:00 - 12:00, normally in Lisa’s
+    office (R524 in 62 Hillhead Street) or by
+    [Zoom](https://uofglasgow.zoom.us/my/debruine). You can also arrange
+    individual meetings if that time doesn’t work for you.
 
 ### After Class
 
