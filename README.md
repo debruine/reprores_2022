@@ -3,6 +3,27 @@
 -   [Collaborative Class
     Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
 
+## Class 03 (2022-10-07)
+
+### Pre-class
+
+-   Read [Chapter 3: Data
+    Visualisation](https://psyteachr.github.io/reprores-v3/ggplot.html)
+-   Complete the
+    [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
+    for chapter 3
+-   Fill out the [pre-class poll](https://forms.gle/RzuYHaA9jpkStner6)
+
+### In-Class
+
+-   Open the [class book](https://psyteachr.github.io/reprores-v3/)
+-   Open RStudio
+-   Set up class project
+-   Introduction to the mid-term assessment
+-   work on Chapter 3 exercises in groups
+-   break
+-   Present chapter 3 exercises
+
 ## Class 02 (2022-09-30)
 
 -   [Poll
