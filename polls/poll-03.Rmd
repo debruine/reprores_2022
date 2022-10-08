@@ -38,8 +38,7 @@ scale_colour <- scale_colour_brewer(palette = "Spectral", drop=FALSE)
 ```{r}
 # read data
 url <- "12NzVYBAS0VyOol6sQu3cojjtRwURn3kMTesB2uWzjUQ"
-data <- read_sheet(url, sheet = "Week3") %>%
-  filter(row_number() != 1)
+data <- read_sheet(url, sheet = "Week3")
 
 
 engage <- c(book = "Read the book", 
