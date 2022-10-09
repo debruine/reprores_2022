@@ -1,7 +1,37 @@
+-   <a href="#class-04-2022-10-14" id="toc-class-04-2022-10-14">Class 04
+    (2022-10-14)</a>
+-   <a href="#class-03-2022-10-07" id="toc-class-03-2022-10-07">Class 03
+    (2022-10-07)</a>
+-   <a href="#class-02-2022-09-30" id="toc-class-02-2022-09-30">Class 02
+    (2022-09-30)</a>
+-   <a href="#class-01-2022-09-23" id="toc-class-01-2022-09-23">Class 01
+    (2022-09-23)</a>
+
 -   Office hours: Fridays 11:00 - 12:00 in Lisa’s office (R524, 62
     Hillhead Street) or [Zoom](https://uofglasgow.zoom.us/my/debruine)
 -   [Collaborative Class
     Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
+
+## Class 04 (2022-10-14)
+
+### Pre-class
+
+-   Read [Chapter 4: Working with
+    Data](https://psyteachr.github.io/reprores-v3/data.html)
+-   Complete the
+    [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
+    for chapter 3
+-   Fill out the [pre-class poll]()
+
+### In-Class
+
+-   Open the [class book](https://psyteachr.github.io/reprores-v3/)
+-   Open your class project in RStudio
+-   Questions about the mid-term assessment
+-   How to zip and unzip files
+-   Reproducible results text
+-   break
+-   Chapter 4 exercise run-through
 
 ## Class 03 (2022-10-07)
 
@@ -18,7 +48,6 @@
 
 -   Open the [class book](https://psyteachr.github.io/reprores-v3/)
 -   Open RStudio
--   Set up class project
 -   Introduction to the mid-term assessment
 -   work on Chapter 3 exercises in groups
 -   break
