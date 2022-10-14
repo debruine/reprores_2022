@@ -7,6 +7,8 @@ output:
     theme: yeti
 ---
 
+[Poll](https://forms.gle/yee8TwyKn5PefPkK7)
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,
@@ -15,8 +17,6 @@ knitr::opts_chunk$set(
   fig.width = 10,
   fig.height = 5
 )
-
-# [Poll](https://forms.gle/yee8TwyKn5PefPkK7)
 
 library(flexdashboard)
 library(kableExtra)
