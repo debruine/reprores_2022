@@ -20,8 +20,8 @@
     Data](https://psyteachr.github.io/reprores-v3/data.html)
 -   Complete the
     [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
-    for chapter 3
--   Fill out the [pre-class poll]()
+    for chapter 4
+-   Fill out the [pre-class poll](https://forms.gle/yee8TwyKn5PefPkK7)
 
 ### In-Class
 
@@ -29,7 +29,7 @@
 -   Open your class project in RStudio
 -   Questions about the mid-term assessment
 -   How to zip and unzip files
--   Reproducible results text
+-   Reproducible results text demo
 -   break
 -   Chapter 4 exercise run-through
 
