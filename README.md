@@ -14,6 +14,9 @@
 
 ## Class 04 (2022-10-14)
 
+-   [Poll
+    4](https://debruine.github.io/reprores_2022/polls/poll-04.html)
+
 ### Pre-class
 
 -   Read [Chapter 4: Working with
@@ -34,6 +37,9 @@
 -   Chapter 4 exercise run-through
 
 ## Class 03 (2022-10-07)
+
+-   [Poll
+    3](https://debruine.github.io/reprores_2022/polls/poll-03.html)
 
 ### Pre-class
 
