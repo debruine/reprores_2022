@@ -7,7 +7,7 @@ output:
     theme: yeti
 ---
 
-[Poll](https://forms.gle/yee8TwyKn5PefPkK7)
+[Take the Poll](https://forms.gle/yee8TwyKn5PefPkK7)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(

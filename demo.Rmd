@@ -1,0 +1,61 @@
+---
+title: "Untitled"
+author: "Lisa DeBruine"
+date: "2022-10-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+## Load Data
+
+```{r}
+ct <- cols(
+  id = col_integer(),
+  user_id = col_integer(),
+  date = col_date(format = ""),
+  moral = col_double(),
+  pathogen = col_double(),
+  sexual = col_double()
+)
+
+disgust_scores <- read_csv("data/disgust_scores.csv", 
+                           col_types = ct) |>
+  sample_n(200)
+
+glimpse(disgust_scores)
+```
+
+## Analyse
+
+```{r, echo = FALSE, results='asis'}
+
+test <- cor.test(disgust_scores$moral, 
+    disgust_scores$pathogen, 
+    use = "complete.obs")
+
+r <- round(test$estimate, 2)
+direction <- if (r > 0) { "positive" } else { "negative" }
+df <- test$parameter
+p <- if (test$p.value < .001) {
+  "p < .001"
+} else {
+  paste("p =", round(test$p.value, 3))
+}
+sig <- if (test$p.value < .05) { "significant"} else { "" }
+
+template <- "There was a {sig} {direction} correlation between the two variables, r({df}) = {r}, {p}."
+
+glue::glue(template)
+```
+
+
+There was a `r sig` `r direction` correlation between the two variables, r(`r df`) = `r r`, `r p`.
+
+
+
+
