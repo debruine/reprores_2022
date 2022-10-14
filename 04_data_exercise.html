@@ -9,11 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Lisa DeBruine" />
 
-<meta name="date" content="2022-10-14" />
 
-<title>Untitled</title>
+<title>04_data_exercise.knit</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -356,46 +354,231 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Untitled</h1>
-<h4 class="author">Lisa DeBruine</h4>
-<h4 class="date">2022-10-14</h4>
 
 </div>
 
 
-<div id="load-data" class="section level2">
-<h2>Load Data</h2>
-<pre class="r"><code>ct &lt;- cols(
-  id = col_integer(),
-  user_id = col_integer(),
-  date = col_date(format = &quot;&quot;),
-  moral = col_double(),
-  pathogen = col_double(),
-  sexual = col_double()
+<div id="load-built-in-datasets" class="section level2">
+<h2>Load built-in datasets</h2>
+<p>List the datasets in <code>dplyr</code>.</p>
+<pre class="r"><code>data(package = &quot;dplyr&quot;)</code></pre>
+<p>Load the built-in dataset <code>starwars</code> and use
+<code>glimpse()</code> to see an overview.</p>
+<pre class="r"><code>data(&quot;starwars&quot;)</code></pre>
+<p>Convert the built-in base R <code>mtcars</code> dataset to a tibble
+(you will need to find the function for this; it isn’t in the chapter),
+and store it in the object <code>mt</code>.</p>
+<pre class="r"><code>mt &lt;- as_tibble(mtcars, rownames = &quot;cars&quot;)</code></pre>
+</div>
+<div id="import-data-from-csv-and-excel-files" class="section level2">
+<h2>Import data from CSV and Excel files</h2>
+<p>Using the data directory created by <code>reprores::getdata()</code>
+(or download <a href="https://psyteachr.github.io/reprores/data/data.zip">the zip
+file</a>, read “disgust_scores.csv” into a table.</p>
+<pre class="r"><code>disgust &lt;- read_csv(&quot;data/disgust_scores.csv&quot;)</code></pre>
+<p>Override the default column specifications to skip the
+<code>id</code> column.</p>
+<pre class="r"><code>disgust_skip &lt;- read_csv(&quot;data/disgust_scores.csv&quot;,
+                         col_types = cols(id = col_skip()))</code></pre>
+<p>How many rows and columns are in the <code>disgust</code>
+dataset?</p>
+<pre class="r"><code>disgust_rows &lt;- nrow(disgust)
+disgust_cols &lt;- ncol(disgust)</code></pre>
+<p>Load the data in “data/stroop.csv” as <code>stroop1</code> and
+“data/stroop.xlsx” as <code>stroop2</code>.</p>
+<pre class="r"><code>stroop1 &lt;- read_csv(&quot;data/stroop.csv&quot;)
+stroop2 &lt;- readxl::read_excel(&quot;data/stroop.xlsx&quot;)</code></pre>
+<p>Use <code>glimpse()</code> to figure out the difference between the
+two data tables and fix the problem.</p>
+<pre class="r"><code>glimpse(stroop1)</code></pre>
+<pre><code>## Rows: 12,500
+## Columns: 5
+## $ sub_id   &lt;chr&gt; &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;…
+## $ word     &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ ink      &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ response &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ rt       &lt;dbl&gt; 447.9500, 447.9500, 532.8690, 532.8690, 502.0845, 502.0845, 6…</code></pre>
+<pre class="r"><code>glimpse(stroop2)</code></pre>
+<pre><code>## Rows: 12,500
+## Columns: 5
+## $ sub_id   &lt;chr&gt; &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;, &quot;S01&quot;…
+## $ word     &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ ink      &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ response &lt;chr&gt; &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;blue…
+## $ rt       &lt;chr&gt; &quot;447.94998317180102&quot;, &quot;447.94998317180102&quot;, &quot;532.868985954193…</code></pre>
+<pre class="r"><code>stroop2b &lt;- readxl::read_excel(&quot;data/stroop.xlsx&quot;, 
+                               na = c(&quot;NA&quot;, &quot;MISSING&quot;, &quot;&quot;), 
+                               col_types = c(&quot;text&quot;, &quot;text&quot;, &quot;text&quot;, &quot;text&quot;, &quot;numeric&quot;))</code></pre>
+</div>
+<div id="create-a-data-table" class="section level2">
+<h2>Create a data table</h2>
+<p>Create a tibble with the columns <code>name</code>, <code>age</code>,
+and <code>country</code> of origin for 2 people you know.</p>
+<pre class="r"><code>people &lt;- NULL</code></pre>
+<p>Create a tibble that has the structure of the table below, using the
+minimum typing possible. (Hint: <code>rep()</code>). Store it in the
+variable <code>my_tbl</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A1</td>
+<td>B1</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A1</td>
+<td>B2</td>
+<td>C1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A1</td>
+<td>B1</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A1</td>
+<td>B2</td>
+<td>C1</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A2</td>
+<td>B1</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>A2</td>
+<td>B2</td>
+<td>C1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>A2</td>
+<td>B1</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>A2</td>
+<td>B2</td>
+<td>C1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>my_tbl &lt;- NULL </code></pre>
+</div>
+<div id="understand-the-use-the-basic-data-types" class="section level2">
+<h2>Understand the use the basic data types</h2>
+<p>Set the following objects to the number 1 with the indicated data
+type:</p>
+<ul>
+<li><code>one_int</code> (integer)</li>
+<li><code>one_dbl</code> (double)</li>
+<li><code>one_chr</code> (character)</li>
+</ul>
+<pre class="r"><code>one_int &lt;- NULL
+one_dbl &lt;- NULL
+one_chr &lt;- NULL</code></pre>
+<p>Set the objects <code>T_log</code>, <code>T_chr</code>,
+<code>T_int</code> and <code>T_dbl</code> to logical, character, integer
+and double values that will all be equal to <code>TRUE</code>.</p>
+<pre class="r"><code>T_log &lt;- NULL
+T_chr &lt;- NULL
+T_int &lt;- NULL
+T_dbl &lt;- NULL</code></pre>
+<p>Check your answers with this code:</p>
+<pre class="r"><code># these should all evaluate to TRUE
+tests &lt;- list(
+  T_log_is_TRUE = T_log == TRUE,
+  T_chr_is_TRUE = T_chr == TRUE,
+  T_int_is_TRUE = T_int == TRUE,
+  T_dbl_is_TRUE = T_dbl == TRUE,
+  T_log_is_log = is.logical(T_log),
+  T_chr_is_chr = is.character(T_chr),
+  T_int_is_int = is.integer(T_int),
+  T_dbl_is_dbl = is.double(T_dbl)
 )
 
-disgust_scores &lt;- read_csv(&quot;data/disgust_scores.csv&quot;, 
-                           col_types = ct) |&gt;
-  sample_n(200)
-
-glimpse(disgust_scores)</code></pre>
-<pre><code>## Rows: 200
-## Columns: 6
-## $ id       &lt;int&gt; 9997, 19507, 14837, 3266, 19796, 18251, 18244, 19409, 11018, …
-## $ user_id  &lt;int&gt; 386168, 452785, 421305, 206055, 453918, 448579, 448556, 45178…
-## $ date     &lt;date&gt; 2011-09-28, 2012-11-28, 2012-03-24, 2009-03-31, 2012-12-11, …
-## $ moral    &lt;dbl&gt; 4.142857, 3.714286, NA, 3.571429, 4.571429, 4.857143, 1.71428…
-## $ pathogen &lt;dbl&gt; 4.142857, 3.142857, 2.857143, 4.285714, 2.285714, 3.857143, 1…
-## $ sexual   &lt;dbl&gt; 0.8571429, 0.4285714, 0.0000000, 3.0000000, 0.5714286, 1.7142…</code></pre>
+str(tests) # this shows a condensed version of the list</code></pre>
+<pre><code>## List of 8
+##  $ T_log_is_TRUE: logi(0) 
+##  $ T_chr_is_TRUE: logi(0) 
+##  $ T_int_is_TRUE: logi(0) 
+##  $ T_dbl_is_TRUE: logi(0) 
+##  $ T_log_is_log : logi FALSE
+##  $ T_chr_is_chr : logi FALSE
+##  $ T_int_is_int : logi FALSE
+##  $ T_dbl_is_dbl : logi FALSE</code></pre>
 </div>
-<div id="analyse" class="section level2">
-<h2>Analyse</h2>
-<p>Correlation between pathogen and moral disgust scores.</p>
-<p>There was a significant positive correlation between the two
-variables, r(181) = 0.18, p = 0.015.</p>
-<p>Alternatively, use inline r:</p>
-<p>There was a significant positive correlation between the two
-variables, r(181) = 0.18, p = 0.015.</p>
+<div id="understand-and-use-the-basic-container-types" class="section level2">
+<h2>Understand and use the basic container types</h2>
+<p>Create a vector of the numbers 3, 6, and 9.</p>
+<pre class="r"><code>threes &lt;- NULL</code></pre>
+<p>The built-in vector <code>letters</code> contains the letters of the
+English alphabet. Use an indexing vector of integers to extract the
+letters that spell ‘cat’.</p>
+<pre class="r"><code>cat &lt;- NULL</code></pre>
+<p>The function <code>colors()</code> returns all of the color names
+that R is aware of. What is the length of the vector returned by this
+function? (Use code to find the answer.)</p>
+<pre class="r"><code>col_length &lt;- NULL</code></pre>
+<p>Create a named list called <code>col_types</code> where the name is
+each column in the built-in dataset <code>table1</code> and the value is
+the column data type (e.g., “double”, “character”, “integer”,
+“logical”).</p>
+<pre class="r"><code>col_types &lt;- NULL</code></pre>
+</div>
+<div id="use-vectorized-operations" class="section level2">
+<h2>Use vectorized operations</h2>
+<p>Set the object <code>x</code> to the integers 1 to 100. Use
+vectorised operations to set <code>y</code> to <code>x</code> squared.
+Use <code>plot(x, y)</code> to visualise the relationship between these
+two numbers.</p>
+<pre class="r"><code>x &lt;- NULL
+y &lt;- NULL</code></pre>
+<p>Set <code>t</code> to the numbers 0 to 100 in increments of 0.1. Set
+<code>x</code> to the sine of <code>t</code> and <code>y</code> to the
+cosine of <code>t</code> (you will need to find the functions for sine
+and cosine). Plot <code>x</code> against <code>y</code>.</p>
+<pre class="r"><code>t &lt;- NULL
+x &lt;- NULL
+y &lt;- NULL</code></pre>
+<p>The function call <code>runif(n, min, max)</code> will draw
+<code>n</code> numbers from a uniform distribution from <code>min</code>
+to <code>max</code>. If you set <code>n</code> to 10000,
+<code>min</code> to 0 and <code>max</code> to 1, this simulates the
+p-values that you would get from 10000 experiments where the null
+hypothesis is true. Create the following objects:</p>
+<ul>
+<li><code>pvals</code>: 10000 simulated p-values using
+<code>runif()</code></li>
+<li><code>is_sig</code>: a logical vector that is <code>TRUE</code> if
+the corresponding element of <code>pvals</code> is less than .05,
+<code>FALSE</code> otherwise</li>
+<li><code>sig_vals</code>: a vector of just the significant
+p-values</li>
+<li><code>prop_sig</code>: the proportion of those p-values that were
+significant</li>
+</ul>
+<pre class="r"><code>set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
+
+pvals    &lt;- NULL
+is_sig   &lt;- NULL
+sig_vals &lt;- NULL
+prop_sig &lt;- NULL</code></pre>
 </div>
 
 

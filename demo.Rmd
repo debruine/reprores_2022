@@ -32,6 +32,8 @@ glimpse(disgust_scores)
 
 ## Analyse
 
+Correlation between pathogen and moral disgust scores.
+
 ```{r, echo = FALSE, results='asis'}
 
 test <- cor.test(disgust_scores$moral, 
@@ -53,6 +55,7 @@ template <- "There was a {sig} {direction} correlation between the two variables
 glue::glue(template)
 ```
 
+Alternatively, use inline r:
 
 There was a `r sig` `r direction` correlation between the two variables, r(`r df`) = `r r`, `r p`.
 

@@ -32,7 +32,7 @@
 -   Open your class project in RStudio
 -   Questions about the mid-term assessment
 -   How to zip and unzip files
--   Reproducible results text demo
+-   Reproducible results text demo [RMD](demo.Rmd) / [HTML](demo.html)
 -   break
 -   Chapter 4 exercise run-through
 
