@@ -1,3 +1,5 @@
+-   <a href="#class-05-2022-10-21" id="toc-class-05-2022-10-21">Class 05
+    (2022-10-21)</a>
 -   <a href="#class-04-2022-10-14" id="toc-class-04-2022-10-14">Class 04
     (2022-10-14)</a>
 -   <a href="#class-03-2022-10-07" id="toc-class-03-2022-10-07">Class 03
@@ -8,9 +10,31 @@
     (2022-09-23)</a>
 
 -   Office hours: Fridays 11:00 - 12:00 in Lisa’s office (R524, 62
-    Hillhead Street) or [Zoom](https://uofglasgow.zoom.us/my/debruine)
+    Hillhead Street)
 -   [Collaborative Class
     Notes](https://docs.google.com/document/d/1ZSSg7UjnZGvuR3-gSnYdTEZWPIvuFrRTPLhjpeLtkzc/)
+
+## Class 05 (2022-10-21)
+
+-   [Poll 5](https://forms.gle/pmwQZE2KVCfWYXV47) and
+    [results](https://debruine.github.io/reprores_2022/polls/poll-05.html)
+
+### Pre-class
+
+-   Read [Chapter 5: Data
+    Relations](https://psyteachr.github.io/reprores-v3/joins.html)
+-   Complete the
+    [exercises](https://psyteachr.github.io/reprores-v3/exercises.html)
+    for chapter 5
+-   Fill out the [pre-class poll](https://forms.gle/pmwQZE2KVCfWYXV47)
+
+### In-Class
+
+-   Open the [class book](https://psyteachr.github.io/reprores-v3/)
+-   Open your class project in RStudio
+-   Chapter 5 exercise run-through
+-   Break
+-   Assessment and previous chapter questions
 
 ## Class 04 (2022-10-14)
 

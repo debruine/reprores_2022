@@ -1,5 +1,5 @@
 ---
-title: "ReproRes Poll Class 04"
+title: "ReproRes Poll Class 05"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -31,14 +31,14 @@ library(tidytext) # for manipulating text for word clouds
 
 ```{r, eval = TRUE}
 theme_set(theme_fivethirtyeight(base_size = 24))
-scale_fill <- scale_fill_brewer(palette = "Spectral", drop=FALSE)
-scale_colour <- scale_colour_brewer(palette = "Spectral", drop=FALSE)
+scale_fill <- scale_fill_brewer(palette = "Dark2", drop=FALSE)
+scale_colour <- scale_colour_brewer(palette = "Dark2", drop=FALSE)
 ```
 
 ```{r}
 # read data
 url <- "12NzVYBAS0VyOol6sQu3cojjtRwURn3kMTesB2uWzjUQ"
-data <- read_sheet(url, sheet = "Week4") |>
+data <- read_sheet(url, sheet = "Week5") |>
   filter(row_number() > 1)
 
 
@@ -55,7 +55,7 @@ n <- nrow(data)
 Row {data-height=400}
 -----------------------------------------------------------------------
 
-### How did you engage with Chapter 4?
+### How did you engage with Chapter 5?
 
 ```{r}
 subdat <- select(data, x = 2) %>%
@@ -70,37 +70,47 @@ ggplot(subdat, aes(x = x, fill = x)) +
   coord_flip(ylim = c(0, n)) 
 ```
 
-### What have you completed for the mid-term assessment?
+### #GreatPsychPumpkinBattle
 
 ```{r}
-midterm <- c(download = "Downloaded my data",
-             project = "Created a project",
-             Rmd = "Created the R Markdown file",
-             YAML = "Edited the YAML header",
-             biblio = "Set up the bibliography",
-             headers = "Added the header structure and text",
-             loaded = "Loaded the data",
-             wrangled = "Wrangled the data",
-             dataviz = "Visualised the data",
-             analysis = "Created the reproducible analysis results text")
-
+labels <- c("Nope", "IDK", "Definitely")
 subdat <- select(data, x = 5) %>%
-  separate_rows(x, sep = ", ") %>%
-  mutate(x = factor(x, rev(midterm), rev(names(midterm))))
+  filter(!is.na(x)) %>%
+  mutate(x = ifelse(substr(x, 1, 1) == "D", "Definitely", x)) %>%
+  mutate(x = factor(x, 
+                    c("No, I hate Halloween",
+                      "I didn't know about this",
+                      "Definitely"),
+                    labels))
+ggplot(subdat, aes(x = x, fill = x)) +
+  geom_bar(show.legend = FALSE, colour = "black") +
+  scale_x_discrete(name = "",  drop=FALSE) +
+  scale_y_continuous(name = "", breaks = 0:11*5) +
+  scale_fill_manual(values = c("darkorange", "white", "black")) +
+  coord_flip(ylim = c(0, max(n, 5))) +
+  theme(axis.text.y = element_text(size = 30))
+```
+
+### Extra Help
+
+```{r}
+subdat <- select(data, x = 6) %>%
+  filter(!is.na(x)) %>%
+  separate_rows(x, sep = ", ")
 
 ggplot(subdat, aes(x = x, fill = x)) +
   geom_bar(show.legend = FALSE, colour = "black") +
   scale_x_discrete(name = "",  drop=FALSE) +
   scale_y_continuous(name = "", breaks = 0:11*5) +
   scale_fill +
-  coord_flip(ylim = c(0, n)) 
+  coord_flip(ylim = c(0, max(n, 5)))
 ```
 
 
 Row {data-height=400}
 -----------------------------------------------------------------------
 
-### List concepts you learned in Chapter 4 that you feel confident about.
+### List concepts you learned in Chapter 5 that you feel confident about.
 
 ```{r}
 omitted <- c(stop_words$word, "im", 0:9)
@@ -121,7 +131,7 @@ ggplot(words, aes(label = word, colour = word, size = n)) +
 
 
 
-### List concepts you learned in Chapter 4 that you feel less confident about and would like reviewed in class today.
+### List concepts you learned in Chapter 5 that you feel less confident about and would like reviewed in class today.
 
 ```{r}
 omitted <- c(stop_words$word, "im", 0:9)
