@@ -98,12 +98,22 @@ subdat <- select(data, x = 6) %>%
   filter(!is.na(x)) %>%
   separate_rows(x, sep = ", ")
 
-ggplot(subdat, aes(x = x, fill = x)) +
+one_off <- count(subdat, x) |>
+  filter(n == 1) |>
+  pull(x)
+
+subdat |>
+  filter(!x %in% one_off) |>
+  ggplot(aes(x = x, fill = x)) +
   geom_bar(show.legend = FALSE, colour = "black") +
   scale_x_discrete(name = "",  drop=FALSE) +
   scale_y_continuous(name = "", breaks = 0:11*5) +
   scale_fill +
   coord_flip(ylim = c(0, max(n, 5)))
+```
+
+```{r, results='asis'}
+paste("*", one_off, "  ", collapse = "\n") |> cat()
 ```
 
 
